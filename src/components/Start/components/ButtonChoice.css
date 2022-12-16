@@ -1,0 +1,15 @@
+.start-button{
+    height: 300px;
+    max-height: 50vw;
+    width: 300px;
+    max-width: 50vw;  
+    display: grid;
+    align-items: flex-end;
+    font-size: calc(10px + 2vw);
+    
+    color: black;
+    border-radius: 10%;
+}
+.start-button-link{
+    text-decoration: none;
+}
