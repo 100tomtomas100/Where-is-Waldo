@@ -1,0 +1,8 @@
+.game-header {
+    height: 15vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: sticky;
+    background-color: white;
+}
