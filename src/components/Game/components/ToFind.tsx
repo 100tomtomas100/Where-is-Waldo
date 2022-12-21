@@ -4,14 +4,15 @@ import wizard from "../../../images/wizard.png";
 
 import "./ToFind.css";
 
-const ToFind = (): JSX.Element => {
+const ToFind = ({chosenChar}: {chosenChar: {[key: string]: any}}): JSX.Element => {
+
     return (
         <div className="searching">
         <div>Searching for!</div>
         <div className="to-find">
-            <img src={waldo} id="wally" alt="waldo" className="to-find-img" />
-            <img src={wilma} id="wilma" alt="wilma" className="to-find-img" />
-            <img src={wizard} id="wizard" alt="wizard" className="to-find-img" />
+            <img src={waldo} id="wally" alt="waldo" className={`to-find-img ${chosenChar["wally"]}`} />
+            <img src={wilma} id="wilma" alt="wilma" className={`to-find-img ${chosenChar["wilma"]}`} />
+            <img src={wizard} id="wizard" alt="wizard" className={`to-find-img ${chosenChar["wizard"]}`} />
         </div>
         </div>
     )

@@ -10,3 +10,6 @@
 .to-find-img{
     height: 100%;
 }
+.grayscale{
+    filter: grayscale(100%);
+}
