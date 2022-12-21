@@ -9,9 +9,9 @@ const ToFind = (): JSX.Element => {
         <div className="searching">
         <div>Searching for!</div>
         <div className="to-find">
-            <img src={waldo} alt="waldo" className="to-find-img" />
-            <img src={wilma} alt="wilma" className="to-find-img" />
-            <img src={wizard} alt="wizard" className="to-find-img" />
+            <img src={waldo} id="wally" alt="waldo" className="to-find-img" />
+            <img src={wilma} id="wilma" alt="wilma" className="to-find-img" />
+            <img src={wizard} id="wizard" alt="wizard" className="to-find-img" />
         </div>
         </div>
     )

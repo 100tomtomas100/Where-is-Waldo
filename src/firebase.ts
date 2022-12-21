@@ -15,7 +15,7 @@ const firebaseConfig = {
   messagingSenderId: "523813033062",
   appId: "1:523813033062:web:06932fa08da6650c3989a7",
   measurementId: "G-8FNH760FK5",
-  databaseURL: "https://where-is-waldo-9560c.firebaseio.com",
+  databaseURL: "https://where-is-waldo-9560c-default-rtdb.firebaseio.com/",
 };
 
 // Initialize Firebase

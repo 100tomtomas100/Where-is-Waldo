@@ -1,0 +1,22 @@
+.find-box {
+    height: 130px;
+    width: 80px;
+    position: fixed;   
+    background-color: rgba(3, 29, 100, 0.7);
+    border-radius: 15px;    
+    cursor: pointer;
+}
+
+.find-box-wrapper {
+    height: 100%;
+    width: 100%;
+    display: grid;   
+    align-content: space-around;  
+    color: white;
+}
+.find-box-name{   
+    width: 100%;
+    display: flex;
+    justify-items: flex-start; 
+    margin-left: 10px;
+}

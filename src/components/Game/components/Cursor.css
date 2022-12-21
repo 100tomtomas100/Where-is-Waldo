@@ -1,0 +1,10 @@
+.circle {
+    height: 50px;
+    width: 50px; 
+    border-radius: 50%;
+    position: fixed;
+    background-color: rgba(4, 22, 122, 0.3);   
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9;
+}

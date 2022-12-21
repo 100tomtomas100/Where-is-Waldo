@@ -3,7 +3,7 @@ import ButtonChoice from "./components/ButtonChoice";
 import startImgBackground from "../../images/start.png";
 import LeaderBoardImgBackground from "../../images/leader-board.png";
 
-const Start: React.FC = (): JSX.Element => {
+const Start = (): JSX.Element => {
   type Props = {
     link: string;
     title: string;
