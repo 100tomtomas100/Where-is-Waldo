@@ -12,7 +12,9 @@ const FindBox = ({
   coo: { x: Number; y: Number };
   ratio: { [key: string]: any };
   hideBox: Function;
-  getChosenChar: Function
+  getChosenChar: Function,
+  charClicked: Function,
+  rightGuess: Function
 }): JSX.Element => {
   const [allData, SetAllData] = useState<{ [key: string]: any }>({});
 
@@ -32,6 +34,7 @@ const FindBox = ({
   //check if chosen character is the same as in the image
   const handleClick = (e: React.MouseEvent) => {
     const choice: string = (e.target as HTMLInputElement).id;
+    findBoxProps.charClicked(choice)
     const coo1: {[key: string]: any} = allData[choice].coor1;
     const coo2: {[key: string]: any} = allData[choice].coor2;
 
@@ -49,12 +52,13 @@ const FindBox = ({
         clickMax.y >= coo2.y)
     ) {
       console.log("found");
-
+      findBoxProps.rightGuess(true)
       // switch found character image to grayscale        
       findBoxProps.getChosenChar(choice)
           
     } else {
       console.log("not found");
+      findBoxProps.rightGuess(false)
     }
     findBoxProps.hideBox();
   };

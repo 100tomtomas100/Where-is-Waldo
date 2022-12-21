@@ -1,5 +1,7 @@
-import { useRef, useState } from "react";
+import AnnouncementBox from "./AnnouncementBox";
 import FindBox from "./FindBox";
+import { useRef, useState } from "react";
+
 
 type propsTypes = {
     img: string,
@@ -10,6 +12,9 @@ type propsTypes = {
 
 const MainImage = ({...props}: propsTypes): JSX.Element => {
   const [hideFindBox, SetHideFindBox] = useState<string>("none");
+//   const [announcement, SetAnnouncement] = useState<string>("")
+  const [charClicked, SetCharClicked] = useState<string>("")
+  const [rightGuess, SetRightGuess] = useState<Boolean>(false)
   const [coo, SetCoo] = useState<{ x: Number; y: Number }>({ x: 0, y: 0 });
   const [ratioClickImage, SetRatioClickImage] = useState<{
     min: { x: Number; y: Number };
@@ -64,13 +69,16 @@ const MainImage = ({...props}: propsTypes): JSX.Element => {
       },
     });
   };
+
   type findBoxPropsTypes = {
     imgName: string;
     show: string;
     coo: { x: Number; y: Number };
     ratio: { [key: string]: any };
     hideBox: Function;
-    getChosenChar: Function
+    getChosenChar: Function,
+    charClicked: Function,
+    rightGuess: Function
   }
 
   const findBoxProps: findBoxPropsTypes= {
@@ -81,8 +89,24 @@ const MainImage = ({...props}: propsTypes): JSX.Element => {
     hideBox: ():void => {
       SetHideFindBox("none");
     },
-    getChosenChar: props.getChosenChar
+    getChosenChar: props.getChosenChar,
+    charClicked: (name: string): void => {
+        SetCharClicked(name)
+    },
+    rightGuess: (wasRight: Boolean): void => {
+        SetRightGuess(wasRight)
+    }
   };
+
+  type announcementBoxPropsTypes ={
+    charClicked: string,
+    rightGuess: Boolean
+  }
+
+  const announcementBoxProps : announcementBoxPropsTypes = {
+    charClicked: charClicked,
+    rightGuess: rightGuess,
+  }
 
   return (
     <>
@@ -96,6 +120,7 @@ const MainImage = ({...props}: propsTypes): JSX.Element => {
         onMouseOut={handleMouseOut}
       />
       <FindBox {...findBoxProps} />
+      <AnnouncementBox {...announcementBoxProps}/>
     </>
   );
 };

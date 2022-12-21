@@ -1,0 +1,27 @@
+.announcement-box {
+    height: 15vh;
+    width: 30vw;
+    background-color: rgba(3, 29, 100, 0.8);
+    border-radius: 20px;
+    position: fixed;
+    z-index: 9;
+    left: 35vw;
+    top: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.announcement-text {
+    margin: 0;
+    padding: 0;
+    white-space: pre-wrap;
+    font-size: calc(10px + 1.5vw);
+    font-weight: 600;
+}
+.right{
+    color: green;
+}
+.wrong {
+    color: rgb(212, 80, 80);
+}
