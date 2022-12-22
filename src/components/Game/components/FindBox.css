@@ -1,5 +1,4 @@
-.find-box {
-    height: 130px;
+.find-box {   
     width: 80px;
     position: fixed;   
     background-color: rgba(3, 29, 100, 0.7);
@@ -15,8 +14,10 @@
     color: white;
 }
 .find-box-name{   
+    height: 40px;
     width: 100%;
     display: flex;
     justify-items: flex-start; 
+    align-items: center;  
     margin-left: 10px;
 }

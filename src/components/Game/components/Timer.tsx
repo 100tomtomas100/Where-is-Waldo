@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import "./Timer.css";
 
-const Timer = (timeStart: { timeStart: Date }): JSX.Element => {
+type timerProps ={
+  timeStart: Date,
+  stopTimer: boolean
+}
+const Timer = ({...props}:timerProps): JSX.Element => {
   const [counter, SetCounter] = useState<string>("00:00:00");
 
   useEffect(() => {
     setTimeout(() => {
       const timeNow: Date = new Date();
-      const timePassed: number = timeNow.getTime() - timeStart.timeStart.getTime();
+      const timePassed: number = timeNow.getTime() - props.timeStart.getTime();
       const hours: number = Math.floor(timePassed / 3600000);
       const minutes: number = Math.floor(timePassed / 60000) % 60;
       const seconds: number = Math.floor(timePassed / 1000) % 60;
@@ -18,9 +22,9 @@ const Timer = (timeStart: { timeStart: Date }): JSX.Element => {
         }:${seconds <= 9 ? "0" + seconds : seconds}`.toString()
       );
     }, 1000);
-  }, [counter, timeStart.timeStart]);
+  }, [counter, props.timeStart]);
 
-  return <div className="time-counter">{counter}</div>;
+  return <div className="time-counter">{props.stopTimer? "": counter}</div>;
 };
 
 export default Timer;

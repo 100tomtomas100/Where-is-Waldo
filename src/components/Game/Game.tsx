@@ -9,12 +9,16 @@ const Game = (): JSX.Element => {
   const [chosenChar, SetChosenChar] = useState<{ [key: string]: any }>({});
   const [cursorClass, SetCursorClass] = useState<string>("");
   const [cursorWidth, SetCursorWidth] = useState<Number>(1)
-
+  const [timeStart] = useState<Date>(new Date())
+  const [stopTimer, SetStopTimer] = useState<boolean>(false)
+  
   type mainImageTypes = {
     img: string,
     getChosenChar: Function,
     cursorClass: Function,
-    cursorWidth: Number
+    cursorWidth: Number,
+    timeStart: Date,
+    stopTimer: Function
   }
   
   const mainImageProps: mainImageTypes ={
@@ -30,7 +34,11 @@ const Game = (): JSX.Element => {
         prevCursorClass===""? "circle": ""
       ))
     },
-    cursorWidth: cursorWidth
+    cursorWidth: cursorWidth,
+    timeStart: timeStart,
+    stopTimer: (stop: boolean): void => {
+      SetStopTimer(stop)
+    }
   }
 
   type cursorPropsTypes = {
@@ -45,9 +53,21 @@ const Game = (): JSX.Element => {
     cursorClass: cursorClass
   }
 
+  type headerPropsTypes = {
+    chosenChar: {[key: string]: any},
+    timeStart: Date,
+    stopTimer: boolean
+  }
+
+  const headerProps: headerPropsTypes = {
+    chosenChar: chosenChar,
+    timeStart: timeStart,
+    stopTimer: stopTimer
+  }
+
   return (
     <>
-      <Header chosenChar={chosenChar} />
+      <Header {...headerProps} />
       <Cursor {...cursorProps} />
       <MainImage {...mainImageProps}
       />

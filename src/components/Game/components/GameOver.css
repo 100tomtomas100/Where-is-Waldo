@@ -1,0 +1,51 @@
+.game-over{
+    height: 70vh;
+    width: 70vw;
+    background-color: rgba(3, 29, 100, 0.7);
+    display: none;
+    z-index: 7;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 50px;
+    
+}
+
+.game-over-wrapper{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-content: space-around;
+}
+
+.finished {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-size: calc(10px + 3vw);
+}
+
+#name-input {
+    width: 50%;
+    height: 7vh;
+    border-radius: 20px;
+    border: none;
+    font-size: calc(10px + 0.5vw);
+    text-align: center;
+}
+#name-input:focus{
+    outline: none;
+}
+
+.name-submit{
+    width: 30%;
+    height: 7vh;
+    border-radius: 20px;
+    border: none;
+    font-size: calc(10px + 0.7vw);
+    color: navy;
+}

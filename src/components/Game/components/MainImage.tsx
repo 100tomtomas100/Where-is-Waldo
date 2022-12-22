@@ -1,19 +1,22 @@
 import AnnouncementBox from "./AnnouncementBox";
 import FindBox from "./FindBox";
-import { useRef, useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
+import GameOver from "./GameOver";
 
 type propsTypes = {
     img: string,
     getChosenChar: Function,
     cursorClass: Function,
-    cursorWidth: Number
+    cursorWidth: Number,
+    timeStart: Date,
+    stopTimer: Function
 }
 
 const MainImage = ({...props}: propsTypes): JSX.Element => {
   const [hideFindBox, SetHideFindBox] = useState<string>("none");
-//   const [announcement, SetAnnouncement] = useState<string>("")
   const [charClicked, SetCharClicked] = useState<string>("")
+  const [animateChoice, SetAnimateChoice] = useState<boolean>(false)
+  const [victory, SetVictory] = useState<boolean>(false)
   const [rightGuess, SetRightGuess] = useState<Boolean>(false)
   const [coo, SetCoo] = useState<{ x: Number; y: Number }>({ x: 0, y: 0 });
   const [ratioClickImage, SetRatioClickImage] = useState<{
@@ -23,29 +26,46 @@ const MainImage = ({...props}: propsTypes): JSX.Element => {
     min: { x: 0, y: 0 },
     max: { x: 0, y: 0 },
   });
+
+  //after all characters are found scroll to the top of the screen
+  useEffect(() => {
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    if(victory){
+      props.stopTimer(true)
+    }
+  },[victory])
+
+  //for getting the height and with of the image to calculate the ratios of the of the click, later compered to character position ratios
+  const imageRef = useRef<HTMLImageElement | null>(null); 
   
-  const imageRef = useRef<HTMLImageElement | null>(null);  
+  //get the name of the world map to use for correct data get in FindBox
   const imgName: string = props.img.split(/[/.]+/)[3];
 
+  //circle instead  of a pointer when a mouse is over the image
   const handleMouseOver = (): void => {
     props.cursorClass()
   };
 
+  //pointer instead of circle when the mouse is outside the iage
   const handleMouseOut = (): void => {
     props.cursorClass()
   };
 
   const handleClick = (e: React.MouseEvent): void => {
+    //reset animation class to none before the character choice is made used in Announcement box
+    SetAnimateChoice(false)
 
+    //show/hide the box with character choices
     SetHideFindBox((prevClicked) =>
       prevClicked === "none" ? "block" : "none"
     );
+    // set click coordinates used in FindBox
     SetCoo({
       x: e.clientX,
       y: e.clientY,
     });
 
-    // calculate the square of the circle size ratio range
+    // calculate the area of the mouse circle size ratio range
     SetRatioClickImage({
       min: {
         x: imageRef.current
@@ -78,7 +98,9 @@ const MainImage = ({...props}: propsTypes): JSX.Element => {
     hideBox: Function;
     getChosenChar: Function,
     charClicked: Function,
-    rightGuess: Function
+    rightGuess: Function,
+    animateChoice: Function,
+    victory: Function
   }
 
   const findBoxProps: findBoxPropsTypes= {
@@ -95,18 +117,37 @@ const MainImage = ({...props}: propsTypes): JSX.Element => {
     },
     rightGuess: (wasRight: Boolean): void => {
         SetRightGuess(wasRight)
+    },
+    animateChoice: (animate: boolean):void => {
+      SetAnimateChoice(animate)
+    },
+    victory: (ifWon: boolean): void => {
+      SetVictory(ifWon)
     }
   };
 
   type announcementBoxPropsTypes ={
     charClicked: string,
-    rightGuess: Boolean
+    rightGuess: Boolean,
+    animateChoice: boolean
   }
 
   const announcementBoxProps : announcementBoxPropsTypes = {
     charClicked: charClicked,
     rightGuess: rightGuess,
+    animateChoice: animateChoice
   }
+
+  type gameOverPropsTypes = {
+    victory: boolean,
+    timeStart: Date
+  }
+
+  const gameOverProps: gameOverPropsTypes = {
+    victory: victory,
+    timeStart: props.timeStart
+  }
+
 
   return (
     <>
@@ -121,6 +162,7 @@ const MainImage = ({...props}: propsTypes): JSX.Element => {
       />
       <FindBox {...findBoxProps} />
       <AnnouncementBox {...announcementBoxProps}/>
+      <GameOver {...gameOverProps}/>
     </>
   );
 };

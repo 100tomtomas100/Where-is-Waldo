@@ -3,11 +3,15 @@ import Button from "./Button";
 import ToFind from "./ToFind";
 import "./Header.css";
 import StickyBox from "react-sticky-box";
-import { useState } from "react";
 
+type headerProps = {
+  chosenChar: {[key: string]: any},
+  timeStart: Date,
+  stopTimer: boolean
+}
 
-const Header = ({chosenChar}: {chosenChar: {[key: string]: any}}): JSX.Element => {
-  const [timeStart] = useState<Date>(new Date())
+const Header = ({...props}: headerProps): JSX.Element => {
+
   type ReturnButton = {
     to: string;
     title: string;
@@ -17,11 +21,21 @@ const Header = ({chosenChar}: {chosenChar: {[key: string]: any}}): JSX.Element =
     title: "RETURN",
   };
 
+  type timerPropsTypes = {
+    timeStart: Date,
+    stopTimer: boolean
+  }
+
+  const timerProps: timerPropsTypes = {
+    timeStart: props.timeStart,
+    stopTimer: props.stopTimer
+  }
+
   return (
     <StickyBox>
       <div className="game-header">
-        <ToFind chosenChar={chosenChar} />
-        <Timer timeStart={timeStart} />
+        <ToFind chosenChar={props.chosenChar} />
+        <Timer {...timerProps} />
         <Button {...returnButton} />
       </div>
     </StickyBox>

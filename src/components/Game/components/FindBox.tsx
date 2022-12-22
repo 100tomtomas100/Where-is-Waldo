@@ -14,9 +14,12 @@ const FindBox = ({
   hideBox: Function;
   getChosenChar: Function,
   charClicked: Function,
-  rightGuess: Function
+  rightGuess: Function,
+  animateChoice: Function,
+  victory: Function
 }): JSX.Element => {
   const [allData, SetAllData] = useState<{ [key: string]: any }>({});
+  const [counter, SetCounter] = useState<string[] | []>([""]);
 
   //get data from database
   useEffect(() => {
@@ -24,23 +27,31 @@ const FindBox = ({
     onValue(dataRef, (snapshot: DataSnapshot) => {
       const data: { [key: string]: any } = snapshot.val();
       SetAllData(data);
-    });
+      SetCounter(Object.keys(data))
+    })       
   }, [findBoxProps.imgName]);
+
+  useEffect(() => {
+    if (counter.length === 0) {
+      findBoxProps.victory(true)
+    }
+  },[counter])
 
   const capitalize = (str: string): string => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
-
-  //check if chosen character is the same as in the image
+  
   const handleClick = (e: React.MouseEvent) => {
+    //check if chosen character is the same as in the image
     const choice: string = (e.target as HTMLInputElement).id;
     findBoxProps.charClicked(choice)
+    //ratios of coordinates for the chosen character
     const coo1: {[key: string]: any} = allData[choice].coor1;
     const coo2: {[key: string]: any} = allData[choice].coor2;
-
+    //ratios of coordinates for the area of clicked circle
     const clickMin: {[key: string]: any} = findBoxProps.ratio.min;
     const clickMax: {[key: string]: any} = findBoxProps.ratio.max;
-
+    //compare the clicked area and the character area
     if (
       (clickMin.x <= coo1.x &&
         clickMin.y <= coo1.y &&
@@ -51,18 +62,23 @@ const FindBox = ({
         clickMax.x >= coo2.x &&
         clickMax.y >= coo2.y)
     ) {
-      console.log("found");
       findBoxProps.rightGuess(true)
       // switch found character image to grayscale        
-      findBoxProps.getChosenChar(choice)
-          
+      findBoxProps.getChosenChar(choice) 
+      SetCounter(prevCounter=>(prevCounter.filter(c => c!== choice)))
+      //animate if the choice ir right
+      if (counter.length > 1) {
+        findBoxProps.animateChoice(true)
+      }    
     } else {
-      console.log("not found");
+      //animate if the choice is wrong
+      findBoxProps.animateChoice(true)      
       findBoxProps.rightGuess(false)
     }
+      // hide the box for choices
     findBoxProps.hideBox();
   };
-
+  
   return (
     <div
       className="find-box"
@@ -73,7 +89,7 @@ const FindBox = ({
       }}
     >
       <div className="find-box-wrapper">
-        {Object.keys(allData).map((name) => {
+        {counter.map((name) => {
           return (
             <div
               className="find-box-name"
