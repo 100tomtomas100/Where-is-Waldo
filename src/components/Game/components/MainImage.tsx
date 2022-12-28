@@ -43,7 +43,7 @@ const MainImage = ({...props}: propsTypes): JSX.Element => {
   //get the name of the world map to use for correct data get in FindBox and submit data to the correct leader board
   useEffect(() => {
     SetMapName(selectedMap)
-  },[])
+  },[selectedMap])
 
   //for getting the height and with of the image to calculate the ratios of the of the click, later compered to character position ratios
   const imageRef = useRef<HTMLImageElement | null>(null);   

@@ -16,7 +16,6 @@ const useMousePosition = () => {
             document.removeEventListener("mousemove", mouseMoveHandler)
         }
     },[])
-    // console.log(mousePosition)
     return mousePosition;
 }
 

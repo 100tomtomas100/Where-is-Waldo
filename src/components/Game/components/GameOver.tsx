@@ -42,13 +42,11 @@ const GameOver = ({...props}: gameOverProps): JSX.Element => {
 
     const handleInputChange = (e: React.FormEvent<HTMLInputElement>): void => {
         SetInputText((e.target as HTMLInputElement).value)
-    }
-
-    
+    }    
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>):void => {
         e.preventDefault()
-        const date = new Date
+        const date = new Date()
         const id = date.getTime()
         set(ref(database, `leaderboard/${props.mapName}/${id}`), {
             id: `${id}`,

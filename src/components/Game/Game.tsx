@@ -2,23 +2,16 @@ import "./Game.css";
 import Header from "../common/Header";
 import MainImage from "./components/MainImage";
 import Cursor from "./components/Cursor";
-// import map from "../../images/map.jpg";
 import { useState } from "react";
-// import Storage from "../common/Storage";
-// import { useContext } from "react";
 
 const Game = (): JSX.Element => {
   const [chosenChar, SetChosenChar] = useState<{ [key: string]: any }>({});
   const [cursorClass, SetCursorClass] = useState<string>("");
   const [cursorWidth, SetCursorWidth] = useState<Number>(1);
   const [timeStart] = useState<Date>(new Date());
-  const [stopTimer, SetStopTimer] = useState<boolean>(false);
-
-  // const {selectedMap} = useContext(Storage)
-  
+  const [stopTimer, SetStopTimer] = useState<boolean>(false);  
   
   type mainImageTypes = {
-    // img: string;
     getChosenChar: Function;
     cursorClass: Function;
     cursorWidth: Number;
@@ -27,7 +20,6 @@ const Game = (): JSX.Element => {
   };
 
   const mainImageProps: mainImageTypes = {
-    // img: map,
     getChosenChar: (char: string): void => {
       SetChosenChar((prevChosenChar) => ({
         ...prevChosenChar,

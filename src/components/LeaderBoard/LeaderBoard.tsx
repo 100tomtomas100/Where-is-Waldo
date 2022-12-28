@@ -1,6 +1,6 @@
 import Header from "../common/Header";
 import "./LeaderBoard.css";
-import SelectWorld from "./SelectWorld";
+import SelectWorld from "./components/SelectWorld";
 import { useEffect, useState } from "react";
 import { database } from "../../firebase";
 import { DataSnapshot, onValue, ref } from "firebase/database";
@@ -90,7 +90,9 @@ const LeaderBoard = (): JSX.Element => {
             </tr>
           </thead>
           <tbody>
-            {Object.keys(allData).length > 0 &&
+            {
+            //sort all the finish times by fastest time and assign a place
+            Object.keys(allData).length > 0 &&
             sortedIndexes.length ===
               Object.keys(allData[selectedMap]).length ? (
               sortedIndexes.map((index) => {
@@ -103,6 +105,7 @@ const LeaderBoard = (): JSX.Element => {
                 return (
                   <tr
                     key={Object.keys(allData[selectedMap])[index]}
+                    //add yellow color for the first 3 places
                     className={`leader-board-table-row ${placeNumber < 4? "leader": ""}`}
                   >
                     <td>{placeNumber}</td>

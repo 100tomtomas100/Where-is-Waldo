@@ -1,9 +1,9 @@
 import "./SelectWorld.css";
-import map from "../../images/mini-maps/mini-map.jpg";
-import map1 from "../../images/mini-maps/mini-map1.jpg";
-import map2 from "../../images/mini-maps/mini-map2.jpg";
-import map3 from "../../images/mini-maps/mini-map3.jpg";
-import map4 from "../../images/mini-maps/mini-map4.jpg";
+import map from "../../../images/mini-maps/mini-map.jpg";
+import map1 from "../../../images/mini-maps/mini-map1.jpg";
+import map2 from "../../../images/mini-maps/mini-map2.jpg";
+import map3 from "../../../images/mini-maps/mini-map3.jpg";
+import map4 from "../../../images/mini-maps/mini-map4.jpg";
 
 type props = {
   setSelectedMap: Function;

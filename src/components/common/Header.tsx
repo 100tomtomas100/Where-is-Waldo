@@ -31,6 +31,7 @@ const Header = ({ ...props }: headerProps): JSX.Element => {
     title: "RETURN",
   };
 
+  //render when the game starts
   const gamePage = (): JSX.Element => {
     if (
       props.timeStart &&
@@ -57,6 +58,7 @@ const Header = ({ ...props }: headerProps): JSX.Element => {
     }
   };
   const handleClick = (): void => {
+    //choose map randomly
     if (props.directTo === "/game") {
       const random = Math.floor(
         Math.random() * (props.mapCount ? props.mapCount : 1)
@@ -69,6 +71,7 @@ const Header = ({ ...props }: headerProps): JSX.Element => {
           : ""
       );
     }
+
     if (props.directTo) {
       navigate(props.directTo);
     }

@@ -24,7 +24,7 @@ const FindBox = ({
   //get data from database
   useEffect(() => {
     const dataRef = ref(database, `to-find/${findBoxProps.mapName}`);
-    if (findBoxProps.mapName != "") {
+    if (findBoxProps.mapName !== "") {
       onValue(dataRef, (snapshot: DataSnapshot) => {
         const data: { [key: string]: any } = snapshot.val();
         SetAllData(data);
