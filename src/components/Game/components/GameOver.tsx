@@ -64,7 +64,7 @@ const GameOver = ({...props}: gameOverProps): JSX.Element => {
            <form action=""className="game-over-wrapper" onSubmit={handleSubmit}>
                 <p className="finished">Your Time</p>
                 <p className="finished">{finishTime}</p>                
-                <input type="text" name="name" id="name-input" placeholder="Please write your name"
+                <input type="text" name="name" id="name-input" maxLength={20} placeholder="Please write your name"
                  value={inputText} onChange={handleInputChange} required/><br />
                 <button type="submit" className="name-submit">Submit</button>
             </form>            

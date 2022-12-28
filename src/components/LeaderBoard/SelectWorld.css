@@ -1,0 +1,11 @@
+.leader-board-maps{
+    display: flex;
+    justify-content: space-around;
+}
+.leader-board-img{
+    width: 17vw;
+    object-fit: contain;
+}
+.chosen {
+    width: 21vw;
+}

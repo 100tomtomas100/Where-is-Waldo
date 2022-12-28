@@ -30,11 +30,18 @@ const ChooseMap = (): JSX.Element => {
 
     type headerPropsTypes = {
         buttonTitle: string,
-        text: string
+        text: string,
+        directTo: string,
+        mapCount: number,
+        mapTitle: string
     }
     const headerProps: headerPropsTypes ={
         buttonTitle: "RANDOM",
-        text: "CHOOSE THE GAME"
+        text: "CHOOSE THE GAME",
+        directTo: "/game",
+        mapCount: allMaps.length,
+        mapTitle: getImgId(allMaps[0])
+        
     }
 
     return (

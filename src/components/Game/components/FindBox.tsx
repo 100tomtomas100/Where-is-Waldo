@@ -20,7 +20,7 @@ const FindBox = ({
 }): JSX.Element => {
   const [allData, SetAllData] = useState<{ [key: string]: any }>({});
   const [counter, SetCounter] = useState<string[] | []>([""]);
-
+ 
   //get data from database
   useEffect(() => {
     const dataRef = ref(database, `to-find/${findBoxProps.mapName}`);
@@ -42,6 +42,22 @@ const FindBox = ({
   const capitalize = (str: string): string => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
+
+  //to open the box in a way that all the choices would be on the screen and clearly visible
+  const transformX = (): string => {
+    if(findBoxProps.ratio.min.x > 0.5) { 
+      return "-100%"     
+    } else {
+      return "0"
+    }
+  }
+  const transformY = (): string => {
+    if(findBoxProps.ratio.min.y > 0.5) {
+      return "-100%"
+    } else {
+      return "0"
+    }
+  }
   
   const handleClick = (e: React.MouseEvent) => {
     //check if chosen character is the same as in the image
@@ -83,11 +99,12 @@ const FindBox = ({
   
   return (
     <div
-      className="find-box"
+      className={`find-box`}
       style={{
         display: `${findBoxProps.show}`,
         left: `${findBoxProps.coo.x}px`,
         top: `${findBoxProps.coo.y}px`,
+        transform: `translate(${transformX()}, ${transformY()})`
       }}
     >
       <div className="find-box-wrapper">
