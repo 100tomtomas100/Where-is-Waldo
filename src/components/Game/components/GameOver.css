@@ -46,6 +46,7 @@
     height: 7vh;
     border-radius: 20px;
     border: none;
-    font-size: calc(10px + 0.7vw);
+    font-size: calc(10px + 1vw);
     color: navy;
+    font-weight: 600;
 }

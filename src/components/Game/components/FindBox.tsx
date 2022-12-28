@@ -7,7 +7,7 @@ import "./FindBox.css";
 const FindBox = ({
   ...findBoxProps
 }: {
-  imgName: string;
+  mapName: string;
   show: string;
   coo: { x: Number; y: Number };
   ratio: { [key: string]: any };
@@ -23,13 +23,15 @@ const FindBox = ({
 
   //get data from database
   useEffect(() => {
-    const dataRef = ref(database, `to-find/${findBoxProps.imgName}`);
-    onValue(dataRef, (snapshot: DataSnapshot) => {
-      const data: { [key: string]: any } = snapshot.val();
-      SetAllData(data);
-      SetCounter(Object.keys(data))
-    })       
-  }, [findBoxProps.imgName]);
+    const dataRef = ref(database, `to-find/${findBoxProps.mapName}`);
+    if (findBoxProps.mapName != "") {
+      onValue(dataRef, (snapshot: DataSnapshot) => {
+        const data: { [key: string]: any } = snapshot.val();
+        SetAllData(data);
+        SetCounter(Object.keys(data))
+      })       
+    }    
+  }, [findBoxProps.mapName]);
 
   useEffect(() => {
     if (counter.length === 0) {

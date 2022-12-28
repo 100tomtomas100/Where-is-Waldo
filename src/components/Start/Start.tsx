@@ -11,7 +11,7 @@ const Start = (): JSX.Element => {
   };
   
   const startGameProps: Props = {
-    link: "/game",
+    link: "/choose-map",
     title: "START GAME",
     image: startImgBackground
   };

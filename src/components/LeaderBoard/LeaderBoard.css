@@ -1,0 +1,26 @@
+#select-map{
+    width: 80vw;
+    border-radius: 7px;
+    font-size: calc(10px + 0.5vw);
+}
+.leader-board-table{
+    margin-top: 2vh;
+    height: 100%;
+    width: 80vw;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.leader-board-table-wrapper{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.leader-board-table-row{
+    border: 1px solid black;
+    height: 5vh;
+}
+.leader-board-table-header{
+    height: 5vh;
+    background-color: dodgerblue;
+}

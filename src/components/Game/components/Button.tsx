@@ -10,7 +10,7 @@ const Button = ({...props}: Props) => {
 
     return (
         <Link to={props.to}>
-            <button className="return-button">{props.title}</button>
+            <button className="header-button">{props.title}</button>
         </Link>
     )
 }
